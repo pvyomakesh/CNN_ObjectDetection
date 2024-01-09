@@ -29,7 +29,7 @@ This Convolutional Neural Network project is structured with individual MATLAB f
 
 * Ensure that MATLAB is installed on your system.
 * Clone the repository or download the project files to your local machine.
-* Place the CIFAR-10 dataset (cifar10testdata.mat) and the CNN parameters (CNNParameters.mat) in the project directory.
+* Place all the matlab files including the data files and layers in a project directory.
 
 **Step 2: Open the Project**
 * Open MATLAB.
@@ -49,31 +49,32 @@ Each function file (e.g., for convolution, ReLU, max pooling, softmax) is design
 ## Project Structure
 This project is organized with multiple MATLAB function files for each CNN operation and a central main.m script that integrates these functions. Here's an overview of the key components:
 
-**main.m**: The main script that orchestrates the execution of the CNN. Run this file in MATLAB to perform the forward pass of the network on the CIFAR-10 dataset.
+**[main.m](main.m)**: The main script that orchestrates the execution of the CNN. Run this file in MATLAB to perform the forward pass of the network on the CIFAR-10 dataset.
 
 ### Layer Implementations
 Each layer of the CNN is implemented in individual MATLAB function files. Visual representations of each layer are included for better understanding.
 
-* **imnormalize.m**: Routine for image normalization.
+* **[appyl_imnormalize.m](Layers/apply_imnormalize.m)**: Routine for image normalization.
 ![Image Normalization](Images/image_normalization.png)
-* **relu.m**: Routine implementing the ReLU function.
+* **[apply_relu.m](Layers/apply_relu.m)**: Routine implementing the ReLU function.
 ![ReLU](Images/relu.png)
-* **maxpool.m**: Input is an array of size 2N ×2M ×D and output is an array of size N ×M ×D obtained by considering
+* **[apply_maxpool.m](Layers/apply_maxpool.m)**: Input is an array of size 2N ×2M ×D and output is an array of size N ×M ×D obtained by considering
 the maximum values in subsections of the rows and columns. It effectively reduces the number of total
 rows and columns by using the maximum to represent a patch of rows and columns.\
 ![Maxpool](Images/Maxpool.png)
-* **convolve.m**: The input array is of size N × M × D1 and the output is an array of size N × M × D2. Note that the
+* **[apply_convolve.m](Layers/apply_convolve.m)**: The input array is of size N × M × D1 and the output is an array of size N × M × D2. Note that the
 number of rows and columns is unchanged. The number of channels is what changes in the output.\
 ![Convolve im.1](Images/convolution_1.png)\
 ![Convolve im.2](Images/convolution_2.png)
-* **fullconnect.m**: Input is an array of size N × M × D1 and the output is an array of size 1 × 1 × D2. Similarl to
+* **[apply_fullconnect.m](Layers/apply_fullconnect.m)**: Input is an array of size N × M × D1 and the output is an array of size 1 × 1 × D2. Similarl to
 how the convolution layer works, the fully connected layer applies a filter bank of D2 filters and bias
 values to generate an output vector.\
 ![Fully Connected](Images/fully_connected.png)
-* **softmax.m**: Routine implementing the softmax function. This essentially turns the output of your
+* **[apply_softmax.m](Layers/apply_softmax.m)**: Routine implementing the softmax function. This essentially turns the output of your
 fully connected layer into a vector of probabilities. You can then classify the category based on this
 vector by choosing the one with highest probability.\
 ![Softmax](Images/softmax.png)
+* **[apply_CNN.m](Layers/apply_CNN.m)**: Routine that builds the Convolutional Neural Network by connecting all the layers defined above.
 
 ### Data Files
 **CNNParameters.mat**: Parameters file containing the filter and bias vectors for convolution and fully connected layers.
@@ -92,7 +93,7 @@ A flowchart depicting how all the layers work together in the CNN is included fo
 ![Flow Chart](Images/flow_chart.png)
 
 ## Evaluation
-The performance of the CNN is evaluated using a confusion matrix, highlighting the accuracy and misclassifications across different categories.
+The performance of the CNN is evaluated using a confusion matrix, highlighting the accuracy and misclassifications across different categories. The [debuggingTest.mat](debuggingTest.mat) file is useful in debugging the CNN and ensuring proper functionality.
 
 ## Contributing
 Contributions to this project are welcome. Please ensure to follow the existing code structure and update the documentation as needed.
